@@ -1,0 +1,46 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+public class JsonSimpleLibraryExample {
+
+	private static final String jsonFilePath = "C:\\Desktop\\filesExamples\\file.json";
+
+	public static void main(String[] args) {
+
+		JSONObject jsonObj = new JSONObject();
+
+		jsonObj.put("URL", "https://sharanvjtechnology.wordpress.com/");
+
+		jsonObj.put("Site Name", "Information Technology");
+
+		jsonObj.put("Visitors", 100);
+
+		JSONArray jsonArray = new JSONArray();
+
+		jsonArray.add("Saranya");
+
+		jsonArray.add("Devi");
+
+		jsonObj.put("Names", jsonArray);
+
+		try 
+		{
+			FileWriter jsonFileWriter = new FileWriter(jsonFilePath);
+			jsonFileWriter.write(jsonObj.toJSONString());
+			jsonFileWriter.flush();
+			jsonFileWriter.close();
+
+			System.out.print(jsonObj);
+		} 
+		
+		catch (IOException e) 
+		{
+		e.printStackTrace();
+		}
+
+	}
+
+}

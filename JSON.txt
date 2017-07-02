@@ -1,0 +1,62 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+public class JsonSimpleExample {
+
+	private static final String jsonFilePath = "C:\\Desktop\\filesExamples\\file.json";
+
+	public static void main(String[] args) {
+
+		JSONParser jsonParser = new JSONParser();
+
+		try {
+
+			FileReader fileReader = new FileReader(jsonFilePath);
+
+			JSONObject jsonObj = (JSONObject) jsonParser.parse(fileReader);
+
+			String url = (String) jsonObj.get("URL");
+
+			System.out.println("URL: " + url);
+
+			String siteName = (String) jsonObj.get("Site Name");
+
+			System.out.println("Site Name: " + siteName);
+
+			long visitors = (long) jsonObj.get("Visitors");
+
+			System.out.println("Visitors: " + visitors);
+
+			JSONArray names = (JSONArray) jsonObj.get("Names");
+
+			Iterator i = names.iterator();
+
+			while (i.hasNext()) 
+			{
+
+				System.out.println(" "+i.next());
+
+			}
+
+		} 
+		catch (FileNotFoundException e) {
+		e.printStackTrace();
+		} 
+		catch (IOException e) 
+		{
+		e.printStackTrace();
+		} 
+		catch (ParseException e) 
+		{
+		e.printStackTrace();
+		}
+
+	}
+
+}
